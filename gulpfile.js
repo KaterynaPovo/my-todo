@@ -1,4 +1,5 @@
 import gulp from "gulp";
+import ghPages from "gulp-gh-pages";
 
 import { path } from "./gulp/config/path.js";
 import { plugins } from "./gulp/config/plugins.js";
@@ -37,3 +38,6 @@ const mainTasks = gulp.series(
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 
 gulp.task("default", dev);
+gulp.task("deploy", function () {
+  return gulp.src("./dist/**/*").pipe(deploy());
+});
